@@ -122,9 +122,15 @@ def main():
     tickers = [t.strip().upper() for t in
                os.environ.get("TICKERS", DEFAULT_TICKERS).split(",") if t.strip()]
 
+    # PRIME mode: record each ticker's TRUE current position WITHOUT sending any
+    # alerts. Run this once after changing tickers or resetting state, so the
+    # saved memory matches reality. Then turn it off and only real flips alert.
+    prime = os.environ.get("PRIME", "false").strip().lower() in ("true", "1", "yes", "y")
+
     state = load_state()
     now = dt.datetime.now(dt.timezone.utc).astimezone()
-    print(f"Run at {now:%Y-%m-%d %H:%M %Z} — tickers: {', '.join(tickers)}")
+    mode = "PRIME (no alerts)" if prime else "live"
+    print(f"Run at {now:%Y-%m-%d %H:%M %Z} [{mode}] — tickers: {', '.join(tickers)}")
 
     for ticker in tickers:
         try:
@@ -145,7 +151,10 @@ def main():
 
         prev = int(state.get(ticker, {}).get("position", 0))
 
-        if desired != prev:
+        if prime:
+            # Just record the truth, say nothing.
+            print(f"{ticker}: primed position={desired} (px={price:.2f}) — no alert")
+        elif desired != prev:
             if desired == 1:
                 msg = (f"PINEHURST BUY {ticker}\n"
                        f"Entry: {price:.2f}\n"
@@ -164,8 +173,13 @@ def main():
         else:
             print(f"{ticker}: no change (pos={desired}, px={price:.2f})")
 
-        entry_price = (price if desired == 1 and prev == 0
-                       else state.get(ticker, {}).get("entry_price"))
+        # entry_price: set when entering long; keep existing otherwise.
+        if desired == 1 and prev == 0:
+            entry_price = price
+        elif desired == 1:
+            entry_price = state.get(ticker, {}).get("entry_price", price)
+        else:
+            entry_price = None
         state[ticker] = {
             "position": desired,
             "entry_price": entry_price,
