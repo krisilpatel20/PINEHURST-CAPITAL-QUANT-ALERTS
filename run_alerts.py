@@ -61,20 +61,59 @@ def send_telegram(token, chat_id, text):
 
 
 def fetch_closes(ticker):
-    df = yf.download(ticker, period=PERIOD, interval=INTERVAL,
-                     prepost=False, progress=False, auto_adjust=False)
-    if df is None or len(df) == 0:
+    """
+    EXACT copy of Streamlit's _fetch_15m_completed_bars so the alert signal
+    matches the Streamlit trade log. Three things that must match (and were
+    wrong before):
+      1. auto_adjust=True  (adjusts prices; changes every close and the rail)
+      2. drop the currently-forming 15m bar (only act on CLOSED candles)
+      3. tz: localize US/Eastern -> convert America/Chicago -> drop tz
+    """
+    df = yf.download(
+        ticker,
+        period=PERIOD,
+        interval=INTERVAL,
+        progress=False,
+        auto_adjust=True,
+        prepost=False,
+        threads=False,
+    )
+    if df is None or len(df) < 60:
         return None
-    close = df["Close"]
-    # yfinance can return a single-column frame; squeeze to a Series.
-    if hasattr(close, "columns"):
-        close = close.iloc[:, 0]
-    # Convert index to Chicago time to match the Streamlit log timestamps.
+
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = [c[0] if isinstance(c, tuple) else c for c in df.columns]
+
+    close_col = "Close" if "Close" in df.columns else df.columns[-1]
+    px = pd.Series(df[close_col]).dropna().astype(float)
+    if len(px) < 60:
+        return None
+
+    # yfinance intraday is US/Eastern. Convert to CT, then drop tz (as Streamlit).
     try:
-        close.index = close.index.tz_convert(TZ)
-    except (TypeError, AttributeError):
+        if px.index.tz is None:
+            px.index = px.index.tz_localize("America/New_York",
+                                            ambiguous="infer",
+                                            nonexistent="shift_forward")
+        px.index = px.index.tz_convert("America/Chicago").tz_localize(None)
+    except Exception:
         pass
-    return close.dropna()
+
+    # Drop the latest bar ONLY if that 15m candle is still forming.
+    # yfinance labels intraday bars by candle START time; a 2:30 PM CT bar
+    # closes at 2:45 PM CT. This is the key fix: never alert off a half-formed
+    # candle, exactly like Streamlit.
+    try:
+        now_ct = pd.Timestamp.now(tz="America/Chicago").tz_localize(None)
+        latest_start = pd.Timestamp(px.index[-1])
+        latest_close = latest_start + pd.Timedelta(minutes=15)
+        if latest_close > now_ct and len(px) > 2:
+            px = px.iloc[:-1]
+    except Exception:
+        if len(px) > 2:
+            px = px.iloc[:-1]
+
+    return px.dropna()
 
 
 def main():
@@ -111,7 +150,7 @@ def main():
                 msg = (f"PINEHURST BUY {ticker}\n"
                        f"Entry: {price:.2f}\n"
                        f"Rail: {rail:.2f}\n"
-                       f"Bar: {bar_time:%Y-%m-%d %I:%M %p %Z}")
+                       f"Bar: {bar_time:%Y-%m-%d %I:%M %p CT}")
             else:
                 entry = float(state.get(ticker, {}).get("entry_price", price))
                 pnl = (price / entry - 1.0) * 100.0 if entry else 0.0
@@ -119,7 +158,7 @@ def main():
                        f"Exit: {price:.2f}\n"
                        f"PnL: {pnl:+.2f}%\n"
                        f"Rail: {rail:.2f}\n"
-                       f"Bar: {bar_time:%Y-%m-%d %I:%M %p %Z}")
+                       f"Bar: {bar_time:%Y-%m-%d %I:%M %p CT}")
             print(f"{ticker}: FLIP {prev} -> {desired} | {price:.2f}")
             send_telegram(token, chat_id, msg)
         else:
