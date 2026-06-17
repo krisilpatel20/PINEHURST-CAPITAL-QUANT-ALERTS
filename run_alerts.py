@@ -20,6 +20,7 @@ import os
 import json
 import datetime as dt
 
+import pandas as pd
 import requests
 import yfinance as yf
 
