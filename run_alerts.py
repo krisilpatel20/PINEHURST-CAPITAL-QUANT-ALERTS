@@ -20,7 +20,6 @@ import os
 import json
 import datetime as dt
 
-import pandas as pd
 import requests
 import yfinance as yf
 
@@ -99,6 +98,21 @@ def fetch_closes(ticker):
         px.index = px.index.tz_convert("America/Chicago").tz_localize(None)
     except Exception:
         pass
+
+    # Keep ONLY regular-session bars: 8:30am–3:00pm CT (= 9:30am–4:00pm ET).
+    # yfinance labels bars by START time, so the last regular bar starts 2:45pm
+    # CT (closes 3:00pm). This stops any after-hours/overnight print from
+    # flipping the signal — the cause of "everything flat at midnight".
+    try:
+        t = px.index.time
+        from datetime import time as _time
+        mask = (t >= _time(8, 30)) & (t <= _time(14, 45))
+        px = px[mask]
+    except Exception:
+        pass
+
+    if len(px) < 60:
+        return None
 
     # Drop the latest bar ONLY if that 15m candle is still forming.
     # yfinance labels intraday bars by candle START time; a 2:30 PM CT bar
