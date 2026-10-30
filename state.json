@@ -1,142 +1,142 @@
 {
   "DELL": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 417.17999267578125,
-    "last_rail": 421.2511695315342,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 423.92999267578125,
+    "last_price": 423.92999267578125,
+    "last_rail": 418.2950569640015,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "NBIS": {
     "position": 0,
     "entry_price": null,
-    "last_price": 150.1898956298828,
-    "last_rail": 154.72692166414078,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "last_price": 154.10000610351562,
+    "last_rail": 154.1565463140015,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "PLTR": {
     "position": 0,
     "entry_price": null,
-    "last_price": 184.5800018310547,
-    "last_rail": 186.49262994203687,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "last_price": 184.10000610351562,
+    "last_rail": 186.1762767108985,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "AAPL": {
     "position": 0,
     "entry_price": null,
-    "last_price": 343.2749938964844,
-    "last_rail": 346.01302246151664,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "last_price": 344.7900085449219,
+    "last_rail": 345.32669033646516,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "CRWV": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 53.880001068115234,
-    "last_rail": 54.91199096248391,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 54.97999954223633,
+    "last_price": 54.97999954223633,
+    "last_rail": 54.26968482436564,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "HOOD": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 82.5250015258789,
-    "last_rail": 83.80030438494943,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 84.91000366210938,
+    "last_price": 84.91000366210938,
+    "last_rail": 83.1357020399991,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "RKLB": {
     "position": 0,
     "entry_price": null,
-    "last_price": 53.47079849243164,
-    "last_rail": 54.930796334272344,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "last_price": 54.720001220703125,
+    "last_rail": 54.758951392630635,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "CDE": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 12.789999961853027,
-    "last_rail": 13.136493645350662,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 13.100000381469727,
+    "last_price": 13.100000381469727,
+    "last_rail": 12.907958149449897,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "ELF": {
     "position": 0,
     "entry_price": null,
-    "last_price": 111.29000091552734,
-    "last_rail": 111.89809889471061,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "last_price": 111.63999938964844,
+    "last_rail": 111.85805895725713,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "HIMS": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 27.020000457763672,
-    "last_rail": 27.363139080132854,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 27.684999465942383,
+    "last_price": 27.684999465942383,
+    "last_rail": 27.049393296179968,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "ALAB": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 251.6300048828125,
-    "last_rail": 255.7270624065457,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 259.0,
+    "last_price": 259.0,
+    "last_rail": 252.77549060528946,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "TPR": {
     "position": 0,
     "entry_price": null,
-    "last_price": 117.47000122070312,
-    "last_rail": 117.63050314029232,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "last_price": 116.1500015258789,
+    "last_rail": 117.55841243224936,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "IREN": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 23.315000534057617,
-    "last_rail": 23.859081111978405,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 23.96579933166504,
+    "last_price": 23.96579933166504,
+    "last_rail": 23.59554913782275,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "AMD": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 495.45001220703125,
-    "last_rail": 505.5765330522737,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 505.17999267578125,
+    "last_price": 505.17999267578125,
+    "last_rail": 499.80260147762124,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "PGY": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 18.8799991607666,
-    "last_rail": 19.274868807638974,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 19.229999542236328,
+    "last_price": 19.229999542236328,
+    "last_rail": 18.98849857733512,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "AFRM": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 71.58499908447266,
-    "last_rail": 72.47437840894123,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 73.51000213623047,
+    "last_price": 73.51000213623047,
+    "last_rail": 71.84053308515604,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "CLSK": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 7.375,
-    "last_rail": 7.598147195577131,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 7.659999847412109,
+    "last_price": 7.659999847412109,
+    "last_rail": 7.44675068724381,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "MU": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 867.4500122070312,
-    "last_rail": 880.7760745199193,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 884.8900146484375,
+    "last_price": 884.8900146484375,
+    "last_rail": 873.3624030641004,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "SNDK": {
     "position": 0,
     "entry_price": null,
-    "last_price": 1126.3699951171875,
-    "last_rail": 1170.546103992575,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "last_price": 1150.1199951171875,
+    "last_rail": 1153.2194751746347,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   },
   "RIVN": {
-    "position": 0,
-    "entry_price": null,
-    "last_price": 11.71500015258789,
-    "last_rail": 11.834454701320963,
-    "updated": "2026-10-30T19:07:50.870079+00:00"
+    "position": 1,
+    "entry_price": 12.1850004196167,
+    "last_price": 12.1850004196167,
+    "last_rail": 11.734247306093845,
+    "updated": "2026-10-30T23:00:02.564211+00:00"
   }
 }
